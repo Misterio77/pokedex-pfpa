@@ -1,4 +1,4 @@
-name:    pokedex-pfa
+name:    pokedex-pfpa
 version: "0.1.0"
 
 dependencies:
@@ -9,7 +9,7 @@ library:
   source-dirs: src
 
 executables:
-  pokedex-pfa:
+  pokedex-pfpa:
     main: Main.hs
     source-dirs: app
     ghc-options:
@@ -17,4 +17,4 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - pokedex-pfa
+    - pokedex-pfpa
