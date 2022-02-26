@@ -1,0 +1,26 @@
+name: pokedex-pfpa
+version: 0.1.0
+
+executable:
+  main: Main.hs
+  source-dirs: src
+  ghc-options:
+  - -Wall
+  - -O3
+  - -threaded
+  - -rtsopts
+  - -with-rtsopts=-N
+
+dependencies:
+- aeson
+- base
+- file-embed
+- http-types
+- monad-logger
+- persistent
+- persistent-postgresql
+- text
+- yaml
+- yesod
+- yesod-static
+- shakespeare

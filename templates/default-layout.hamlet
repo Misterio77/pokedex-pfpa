@@ -1,0 +1,23 @@
+$doctype 5
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    ^{pageHead pc}
+  <body>
+    <nav .container-fluid>
+      <ul>
+        <li>
+          <a href="/teams">Equipes
+      <ul>
+        <li>
+          $if logged == Authorized
+            <a href=@{LogoutR}>Logout
+          $else
+            <a href=@{LoginR}>Login
+    <main .container>
+      $maybe msg <- mmsg
+        <div #flash>
+          <sup onclick="document.getElementById('flash').remove()">#{msg}
+      ^{pageBody pc}

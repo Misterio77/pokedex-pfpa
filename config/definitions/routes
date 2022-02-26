@@ -1,0 +1,9 @@
+ /                              HomeR               GET
+
+ /teams                         TeamsR              GET POST
+
+ /login                         LoginR              GET POST
+ /register                      RegisterR           GET POST
+ /logout                        LogoutR             GET POST
+
+ /static                        StaticR    Static    staticContent

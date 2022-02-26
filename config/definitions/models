@@ -1,0 +1,27 @@
+User json
+    name Text
+    password Text
+
+    UniqueName name
+
+    deriving Show
+
+Team json
+    name Text
+    master UserId
+
+    deriving Show
+
+Pokemon json
+    name Text
+    tipo Text
+
+    deriving Show
+
+TeamPokemon
+    pokemonId PokemonId
+    teamId TeamId
+
+    UniqueTeamPokemon pokemonId teamId
+
+    deriving Show
