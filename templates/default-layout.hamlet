@@ -21,8 +21,16 @@ $doctype 5
         $nothing
           <li>
             <a href=@{LoginR}>Login
+
     <main .container>
       $maybe msg <- mmsg
         <div #flash>
           <sup onclick="document.getElementById('flash').remove()">#{msg}
       ^{pageBody pc}
+
+    <footer .container>
+      <p>
+        Projeto elaborado para a disciplina Programação Funcional Pura e
+        Aplicações do IME-USP, Verão de 2022.
+      <p>
+        <a href="https://github.com/misterio77/pokedex-pfpa">Código fonte
