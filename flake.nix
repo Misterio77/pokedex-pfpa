@@ -3,10 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, utils }:
     let
       name = "pokedex-pfpa";
       overlay = final: prev: {
@@ -20,7 +20,7 @@
       nixosModules."${name}" = import ./module.nix;
       nixosModule = nixosModules."${name}";
     } //
-    (flake-utils.lib.eachDefaultSystem (system:
+    (utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system overlays; };
       in
@@ -30,7 +30,7 @@
         defaultPackage = packages.${name};
 
         # nix run
-        apps.${name} = flake-utils.lib.mkApp { drv = packages.${name}; };
+        apps.${name} = utils.lib.mkApp { drv = packages.${name}; };
         defaultApp = apps.${name};
 
         # nix develop
