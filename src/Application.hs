@@ -10,6 +10,7 @@ import Handler.Home
 import Handler.Login
 import Handler.Pokemon
 import Handler.Register
+import Handler.Style
 -- import Handler.Trainers
 import Yesod
 

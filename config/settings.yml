@@ -1,5 +1,4 @@
 port: "_env:YESOD_PORT:8080"
-static-dir: "_env:YESOD_STATIC_DIR:static"
 
 database:
   user:     "_env:YESOD_PGUSER:misterio"
@@ -7,9 +6,8 @@ database:
   port:     "_env:YESOD_PGPORT:5432"
   password: "_env:YESOD_PASSWORD:abc123"
   database: "_env:YESOD_PGDATABASE:misterio"
-  poolsize: 10
   poolsize: "_env:YESOD_PGPOOLSIZE:10"
 
 session:
-  timeout: 60
-  file-path: config/session.aes
+  timeout: "_env:YESOD_SESSION_TIMEOUT:60"
+  file-path: "_env:YESOD_SESSION_KEY_PATH:config/session.aes"

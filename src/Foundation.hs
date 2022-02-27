@@ -16,11 +16,9 @@ import Database.Persist.Sql
 import Text.Hamlet (hamletFile)
 import Text.Read (readMaybe)
 import Yesod
-import Yesod.Static
 
 data App = App
-  { staticContent :: Static,
-    connectionPool :: ConnectionPool,
+  { connectionPool :: ConnectionPool,
     sessionTimeout :: Int,
     sessionFilePath :: FilePath
   }

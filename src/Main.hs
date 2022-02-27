@@ -5,20 +5,17 @@ module Main where
 import Application ()
 import Content.Settings
 import Control.Monad.Logger
-import Data.Yaml.Config
 import Database.Models
 import Database.Persist.Postgresql
 import Foundation
 import Network.Wai.Handler.Warp (run)
 import Network.Wai.Middleware.MethodOverride (methodOverride)
 import Yesod
-import Yesod.Static
+import Yesod.Default.Config2
 
 main :: IO ()
 main = do
-  Settings {..} <- loadYamlSettings ["config/settings.yml"] [] useEnv
-
-  staticContent <- static staticDir
+  Settings {..} <- loadYamlSettingsArgs [configSettingsYmlValue] useEnv
 
   PostgresConf {..} <- return databaseConfig
 

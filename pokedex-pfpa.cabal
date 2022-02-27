@@ -13,7 +13,6 @@ executable pokedex-pfpa
   other-modules:
       Application
       Content.Settings
-      Content.Static
       Database.Models
       Database.Utils
       Foundation
@@ -21,6 +20,7 @@ executable pokedex-pfpa
       Handler.Login
       Handler.Pokemon
       Handler.Register
+      Handler.Style
       Paths_pokedex_pfpa
   hs-source-dirs:
       src
@@ -28,6 +28,7 @@ executable pokedex-pfpa
   build-depends:
       aeson
     , base
+    , bytestring
     , file-embed
     , http-types
     , monad-logger

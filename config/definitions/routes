@@ -12,4 +12,4 @@
  /register                                        RegisterR           GET POST
  /logout                                          LogoutR             GET POST
 
- /static                                          StaticR   Static    staticContent
+ /style.css                                       StyleR              GET
