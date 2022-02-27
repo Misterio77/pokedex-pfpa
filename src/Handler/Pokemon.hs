@@ -54,7 +54,7 @@ getPokemonR = do
             <footer>
               $if admin == Authorized
                 <form method=post action=@{PokemonByIdR id}?_method=DELETE>
-                  <button>Remover
+                  <button .delete>Apagar do Pokédex
   |]
 
 postPokemonR :: Handler Html
@@ -91,11 +91,11 @@ getPokemonByIdR pokemonId = do
         <footer>
           $if admin == Authorized
             <form method=post action=@{PokemonByIdR pokemonId}?_method=DELETE>
-              <button>Remover
+              <button .delete>Apagar do Pokédex
   |]
 
 deletePokemonByIdR :: PokemonId -> Handler Html
 deletePokemonByIdR pokemonId = do
   _ <- runDB $ delete pokemonId
-  setMessage "Pokémon removido"
+  setMessage "Pokémon apagado do Pokédex"
   redirect PokemonR

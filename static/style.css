@@ -207,9 +207,9 @@ kbd {
   --h6-color: #4d606d;
   --muted-color: #73828c;
   --muted-border-color: #edf0f3;
-  --primary: #72032e;
-  --primary-hover: #4d001d;
-  --primary-focus: rgba(114, 3, 46, 0.125);
+  --primary: #726503;
+  --primary-hover: #4d4400;
+  --primary-focus: rgba(114, 101, 3, 0.125);
   --primary-inverse: #fff;
   --secondary: #596b78;
   --secondary-hover: #415462;
@@ -311,9 +311,9 @@ kbd {
     --h6-color: #afbbc4;
     --muted-color: #73828c;
     --muted-border-color: #1f2d38;
-    --primary: #c11054;
-    --primary-hover: #e61a68;
-    --primary-focus: rgba(193, 16, 84, 0.25);
+    --primary: #c1ad10;
+    --primary-hover: #e6ce1a;
+    --primary-focus: rgba(193, 173, 16, 0.25);
     --primary-inverse: #fff;
     --secondary: #596b78;
     --secondary-hover: #73828c;
@@ -415,9 +415,9 @@ kbd {
   --h6-color: #afbbc4;
   --muted-color: #73828c;
   --muted-border-color: #1f2d38;
-  --primary: #c11054;
-  --primary-hover: #e61a68;
-  --primary-focus: rgba(193, 16, 84, 0.25);
+  --primary: #c1ad10;
+  --primary-hover: #e6ce1a;
+  --primary-focus: rgba(193, 173, 16, 0.25);
   --primary-inverse: #fff;
   --secondary: #596b78;
   --secondary-hover: #73828c;
