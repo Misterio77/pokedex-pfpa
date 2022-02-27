@@ -14,8 +14,11 @@
       };
       overlays = [ overlay ];
     in
-    {
+    rec {
       inherit overlay overlays;
+
+      nixosModules."${name}" = import ./module.nix;
+      nixosModule = nixosModules."${name}";
     } //
     (flake-utils.lib.eachDefaultSystem (system:
       let
