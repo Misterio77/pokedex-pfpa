@@ -3,6 +3,8 @@ $doctype 5
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex
+    <meta name="description" content="Pokédex e teambuilder">
     <link rel="stylesheet" href=/style.css>
     ^{pageHead pc}
   <body>

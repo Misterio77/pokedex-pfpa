@@ -50,7 +50,7 @@ getPokemonR = do
                 <p>##{fromSqlKey id}
               <p>#{pokemonType1 pokemon}#{showType2 $ pokemonType2 pokemon}
             $maybe sprite <- pokemonSpriteUrl pokemon
-              <img src=#{sprite}>
+              <img alt=#{pokemonName pokemon} src=#{sprite}>
             <footer>
               $if admin == Authorized
                 <form method=post action=@{PokemonByIdR id}?_method=DELETE>
@@ -87,7 +87,7 @@ getPokemonByIdR pokemonId = do
             <p>##{fromSqlKey pokemonId}
           <p>#{pokemonType1 pokemon}#{showType2 $ pokemonType2 pokemon}
         $maybe sprite <- pokemonSpriteUrl pokemon
-          <img src=#{sprite}>
+          <img alt=#{pokemonName pokemon} src=#{sprite}>
         <footer>
           $if admin == Authorized
             <form method=post action=@{PokemonByIdR pokemonId}?_method=DELETE>
