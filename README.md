@@ -37,8 +37,8 @@ encriptar os cookies de sessão.
 O CSS, templates, e configurações do `config/settings.yml` são embedados no
 executável em tempo de compilação, então você pode levar o executável para
 outro lugar e executar normalmente (só precisa levar a `session.aes`, ou deixar
-o yesod gerar outro).
+o yesod gerar outra).
 
 Você pode sobreescrever as configurações em tempo de execução usando variáveis
-de ambiente (veja elas em `config/settings.yml`), ou especificando um caminho
-para outro `.yml` especificando o caminho p/ ele como argumento ao executar.
+de ambiente (veja elas em `config/settings.yml`), ou especificando um outro
+`.yml` como argumento ao executar.
