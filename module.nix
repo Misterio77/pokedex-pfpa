@@ -41,7 +41,6 @@ in
         ExecStart = "${cfg.package}/bin/pokedex-pfpa";
         Restart = "on-failure";
         User = "pokedex";
-        EnvironmentFile = "${cfg.environmentFile}";
       };
       environment = {
         YESOD_PORT = toString cfg.port;
