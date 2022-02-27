@@ -10,4 +10,4 @@ database:
 
 session:
   timeout: "_env:YESOD_SESSION_TIMEOUT:60"
-  file-path: "_env:YESOD_SESSION_KEY_PATH:config/session.aes"
+  file-path: "_env:YESOD_SESSION_KEY_PATH:session.aes"
