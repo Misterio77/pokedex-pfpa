@@ -10,7 +10,6 @@ import Data.ByteString
 import Data.FileEmbed
 import Data.Yaml
 import Database.Persist.Postgresql
-import Yesod.Default.Config2
 
 data Settings = Settings
   { port :: Int,
@@ -27,12 +26,6 @@ configSettingsYmlValue :: Value
 configSettingsYmlValue =
   either Exception.throw id $
     decodeEither' configSettingsYmlBS
-
-compileTimeAppSettings :: Settings
-compileTimeAppSettings =
-  case fromJSON $ applyEnvValue False mempty configSettingsYmlValue of
-    Error e -> error e
-    Success settings -> settings
 
 instance FromJSON Settings where
   parseJSON = withObject "Settings" $ \obj -> do
