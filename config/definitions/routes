@@ -1,9 +1,15 @@
- /                              HomeR               GET
+ /                                                HomeR               GET
 
- /teams                         TeamsR              GET POST
+ /pokemon                                         PokemonR            GET POST
+ /pokemon/#PokemonId                              PokemonByIdR        GET DELETE
 
- /login                         LoginR              GET POST
- /register                      RegisterR           GET POST
- /logout                        LogoutR             GET POST
+-- /trainers                                        TrainersR           GET POST
+-- /trainers/#TrainerId                             TranerByIdR         GET DELETE
+-- /trainers/#TrainerId/pokemon                     TrainerPokemonR     GET POST
+-- /trainers/#TrainerId/pokemon/#TrainerPokemonId   TrainerPokemonByIdR GET DELETE
 
- /static                        StaticR    Static    staticContent
+ /login                                           LoginR              GET POST
+ /register                                        RegisterR           GET POST
+ /logout                                          LogoutR             GET POST
+
+ /static                                          StaticR   Static    staticContent

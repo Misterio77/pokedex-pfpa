@@ -13,7 +13,6 @@ module Foundation where
 import Data.Text (Text, unpack)
 import Database.Models
 import Database.Persist.Sql
-import GHC.Int (Int64)
 import Text.Hamlet (hamletFile)
 import Text.Read (readMaybe)
 import Yesod
@@ -34,32 +33,42 @@ instance Yesod App where
 
   authRoute _ = Just LoginR
 
+  isAuthorized PokemonR True = isAdmin
   isAuthorized _ _ = return Authorized
 
   defaultLayout :: Widget -> Handler Html
   defaultLayout widget = do
-    logged <- isLogged
+    mtrainer <- getTrainerSession
     mmsg <- getMessage
     pc <- widgetToPageContent widget
 
     withUrlRenderer $(hamletFile "templates/default-layout.hamlet")
 
+getTrainerSession :: Handler (Maybe Text)
+getTrainerSession = lookupSession "_ID"
+
+getTrainerSessionId :: Handler (Maybe TrainerId)
+getTrainerSessionId = do
+  maybeIdText <- getTrainerSession
+  let maybeId = maybeIdText >>= readMaybe . unpack
+  return $ toSqlKey <$> maybeId
+
 isLogged :: Handler AuthResult
 isLogged = do
-  maybeSessionId <- lookupSession "_ID"
+  maybeSessionId <- getTrainerSession
 
   return $ case maybeSessionId of
     Just _ -> Authorized
     Nothing -> AuthenticationRequired
 
-userIdFromSession :: Handler (Maybe UserId)
-userIdFromSession = do
-  maybeIdText <- lookupSession "_ID"
-  let maybeId :: Maybe Int64 = maybeIdText >>= readMaybe . unpack
-  return $ toSqlKey <$> maybeId
+isAdmin :: Handler AuthResult
+isAdmin = do
+  maybeSessionId <- getTrainerSession
 
-getSession :: Handler (Maybe Text)
-getSession = lookupSession "_ID"
+  return $ case maybeSessionId of
+    Nothing -> AuthenticationRequired
+    Just "1" -> Authorized
+    Just _ -> Unauthorized "Você não é o Admin"
 
 instance YesodPersist App where
   type YesodPersistBackend App = SqlBackend

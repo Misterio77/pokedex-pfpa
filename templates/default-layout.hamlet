@@ -9,12 +9,15 @@ $doctype 5
     <nav .container-fluid>
       <ul>
         <li>
-          <a href="/teams">Equipes
+          <a href="/">Pokédex
       <ul>
-        <li>
-          $if logged == Authorized
+        $maybe trainer <- mtrainer
+          <li>
+            <a href="/trainer/#{trainer}">Perfil
+          <li>
             <a href=@{LogoutR}>Logout
-          $else
+        $nothing
+          <li>
             <a href=@{LoginR}>Login
     <main .container>
       $maybe msg <- mmsg

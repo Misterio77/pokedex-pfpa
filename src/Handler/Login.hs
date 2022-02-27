@@ -24,9 +24,9 @@ loginForm =
 
 getLoginR :: Handler Html
 getLoginR = do
-  maybeUserId <- lookupSession "_ID"
+  maybeTrainerId <- lookupSession "_ID"
 
-  case maybeUserId of
+  case maybeTrainerId of
     Just _ ->
       redirect HomeR
     Nothing -> do
@@ -51,16 +51,16 @@ postLoginR = do
 
   case result of
     FormSuccess Login {..} -> do
-      maybeUser <-
+      maybeTrainer <-
         runDB $
           selectFirst
-            [ UserName ==. loginName,
-              UserPassword ==. loginPassword
+            [ TrainerName ==. loginName,
+              TrainerPassword ==. loginPassword
             ]
             []
 
-      case maybeUser of
-        Just (Entity e User {}) -> do
+      case maybeTrainer of
+        Just (Entity e Trainer {}) -> do
           setSession "_ID" $ pack . show . fromSqlKey $ e
           redirect HomeR
         Nothing -> do
@@ -75,9 +75,9 @@ postLoginR = do
 
 getLogoutR :: Handler Html
 getLogoutR = do
-  maybeUserId <- lookupSession "_ID"
+  maybeTrainerId <- lookupSession "_ID"
 
-  case maybeUserId of
+  case maybeTrainerId of
     Nothing ->
       redirect HomeR
     Just _ -> do

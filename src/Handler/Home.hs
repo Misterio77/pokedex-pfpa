@@ -4,4 +4,4 @@ import Foundation
 import Yesod
 
 getHomeR :: Handler ()
-getHomeR = redirect TeamsR
+getHomeR = redirect PokemonR

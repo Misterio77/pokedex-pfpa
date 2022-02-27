@@ -9,6 +9,8 @@ import Data.Yaml.Config
 import Database.Models
 import Database.Persist.Postgresql
 import Foundation
+import Network.Wai.Handler.Warp (run)
+import Network.Wai.Middleware.MethodOverride (methodOverride)
 import Yesod
 import Yesod.Static
 
@@ -26,4 +28,6 @@ main = do
 
   runSqlPersistMPool (runMigration migrateAll) connectionPool
 
-  warp port App {..}
+  application <- toWaiAppPlain $ App {..}
+
+  run port $ methodOverride application

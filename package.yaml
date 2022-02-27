@@ -24,3 +24,5 @@ dependencies:
 - yesod
 - yesod-static
 - shakespeare
+- wai-extra
+- warp

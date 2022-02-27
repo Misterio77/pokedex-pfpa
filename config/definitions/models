@@ -1,27 +1,17 @@
-User json
+Trainer
     name Text
     password Text
 
     UniqueName name
 
-    deriving Show
-
-Team json
+Pokemon
     name Text
-    master UserId
+    type1 Text
+    type2 (Maybe Text)
+    spriteUrl (Maybe Text)
 
-    deriving Show
-
-Pokemon json
-    name Text
-    tipo Text
-
-    deriving Show
-
-TeamPokemon
-    pokemonId PokemonId
-    teamId TeamId
-
-    UniqueTeamPokemon pokemonId teamId
-
-    deriving Show
+TrainerPokemon
+    pokemon PokemonId
+    trainer TrainerId
+    nickname (Maybe Text)
+    level Int

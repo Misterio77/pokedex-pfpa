@@ -19,8 +19,8 @@ executable pokedex-pfpa
       Foundation
       Handler.Home
       Handler.Login
+      Handler.Pokemon
       Handler.Register
-      Handler.Teams
       Paths_pokedex_pfpa
   hs-source-dirs:
       src
@@ -35,6 +35,8 @@ executable pokedex-pfpa
     , persistent-postgresql
     , shakespeare
     , text
+    , wai-extra
+    , warp
     , yaml
     , yesod
     , yesod-static

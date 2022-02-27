@@ -8,8 +8,9 @@ module Application where
 import Foundation
 import Handler.Home
 import Handler.Login
+import Handler.Pokemon
 import Handler.Register
-import Handler.Teams
+-- import Handler.Trainers
 import Yesod
 
 mkYesodDispatch "App" resourcesApp

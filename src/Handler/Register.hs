@@ -23,9 +23,9 @@ registerForm =
 
 getRegisterR :: Handler Html
 getRegisterR = do
-  maybeUserId <- lookupSession "_ID"
+  maybeTrainerId <- lookupSession "_ID"
 
-  case maybeUserId of
+  case maybeTrainerId of
     Just _ ->
       redirect HomeR
     Nothing -> do
@@ -50,7 +50,7 @@ postRegisterR = do
 
   case result of
     FormSuccess Register {..} -> do
-      let user = User registerName registerPassword
+      let user = Trainer registerName registerPassword
       _ <- runDB $ insert user
       setMessage "Registrado com sucesso"
       redirect LoginR
