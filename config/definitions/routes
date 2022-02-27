@@ -1,15 +1,15 @@
-/ HomeR GET
+/	HomeR	GET
 
-/pokemon            PokemonR     GET POST
-/pokemon/#PokemonId PokemonByIdR GET DELETE
+/pokemon			PokemonR		GET POST
+/pokemon/#PokemonId	PokemonByIdR	GET DELETE
 
--- /trainers            TrainersR   GET POST
--- /trainers/#TrainerId TranerByIdR GET DELETE
--- /trainers/#TrainerId/pokemon                   TrainerPokemonR     GET POST
--- /trainers/#TrainerId/pokemon/#TrainerPokemonId TrainerPokemonByIdR GET DELETE
+-- /trainers			TrainersR	GET POST
+-- /trainers/#TrainerId	TranerByIdR	GET DELETE
+-- /trainers/#TrainerId/pokemon						TrainerPokemonR		GET POST
+-- /trainers/#TrainerId/pokemon/#TrainerPokemonId	TrainerPokemonByIdR	GET DELETE
 
-/login    LoginR    GET POST
-/register RegisterR GET POST
-/logout   LogoutR   GET POST
+/login		LoginR		GET POST
+/register	RegisterR	GET POST
+/logout		LogoutR		GET POST
 
-/style.css StyleR GET
+/style.css	StyleR	GET
