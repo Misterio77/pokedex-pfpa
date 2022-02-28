@@ -7,7 +7,7 @@
 
 ## Projeto escolhido: 1 - Crie um site utilizando o framework Yesod.
 
-- **Versão live**: https://pokedex.misterio.me (hospedado em um servidor nosso, basta abrir e navegar o/)
+- **Versão live**: https://pokedex.misterio.me (hospedado em um servidor nosso, basta abrir e navegar o/). Você pode acessar o usuário `admin` com a senha `admin`.
 
 - Repositório: https://github.com/Misterio77/pokedex-pfpa
 
