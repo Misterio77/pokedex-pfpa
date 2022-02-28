@@ -4,7 +4,7 @@ database:
   user:     "_env:YESOD_PGUSER:pokedex"
   host:     "_env:YESOD_PGHOST:/var/run/postgresql"
   port:     "_env:YESOD_PGPORT:5432"
-  password: "_env:YESOD_PASSWORD:1234"
+  password: "_env:YESOD_PASSWORD:'123'"
   database: "_env:YESOD_PGDATABASE:pokedex"
   poolsize: "_env:YESOD_PGPOOLSIZE:10"
 

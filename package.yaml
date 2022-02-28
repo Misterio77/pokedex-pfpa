@@ -1,5 +1,5 @@
 name: pokedex-pfpa
-version: 1.0.0
+version: 1.0.1
 
 executable:
   main: Main.hs

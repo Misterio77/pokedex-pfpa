@@ -56,7 +56,8 @@ getPokemonR = do
               <img alt=#{pokemonName pokemon} src=#{sprite}>
             <footer>
               $if logged == Authorized
-                <a href=@{RecruitPokemonR pokemonId} role="button" .outline>Adicionar à equipe
+                <p>
+                  <a href=@{RecruitPokemonR pokemonId} role="button" .outline>Adicionar à equipe
               $if admin == Authorized
                 <form method=post action=@{PokemonByIdR pokemonId}?_method=DELETE>
                   <button .delete>Apagar do Pokédex
@@ -96,7 +97,8 @@ getPokemonByIdR pokemonId = do
           <img alt=#{pokemonName pokemon} src=#{sprite}>
         <footer>
           $if logged == Authorized
-            <a href=@{RecruitPokemonR pokemonId} role="button" .outline>Adicionar à equipe
+            <p>
+              <a href=@{RecruitPokemonR pokemonId} role="button" .outline>Adicionar à equipe
           $if admin == Authorized
             <form method=post action=@{PokemonByIdR pokemonId}?_method=DELETE>
               <button .delete>Apagar do Pokédex
