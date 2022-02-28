@@ -24,7 +24,7 @@ loginForm =
 
 getLoginR :: Handler Html
 getLoginR = do
-  maybeTrainerId <- lookupSession "_ID"
+  maybeTrainerId <- getTrainerSession
 
   case maybeTrainerId of
     Just _ ->
@@ -38,11 +38,11 @@ getLoginR = do
             <header>
               <hgroup>
                 <h1>Fazer login
-                <h2>Precisa de uma conta? #
+                <p>Precisa de uma conta? #
                   <a href=@{RegisterR}>Registrar
             <form method=post action=@{LoginR} enctype=#{encType}>
               ^{widget}
-              <button> Login
+              <button>Login
         |]
 
 postLoginR :: Handler Html
@@ -75,7 +75,7 @@ postLoginR = do
 
 getLogoutR :: Handler Html
 getLogoutR = do
-  maybeTrainerId <- lookupSession "_ID"
+  maybeTrainerId <- getTrainerSession
 
   case maybeTrainerId of
     Nothing ->
@@ -87,7 +87,7 @@ getLogoutR = do
             <header>
               <hgroup>
                 <h1>Log out
-                <h2>Tem certeza?
+                <p>Tem certeza?
             <form method=post action=@{LogoutR}>
               <button> Log out
         |]

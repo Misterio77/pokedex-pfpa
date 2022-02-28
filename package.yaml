@@ -27,3 +27,4 @@ dependencies:
 - shakespeare
 - wai-extra
 - warp
+- esqueleto

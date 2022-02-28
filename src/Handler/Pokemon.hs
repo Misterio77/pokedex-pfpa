@@ -28,6 +28,7 @@ getPokemonR = do
   pokemonList <- runDB $ selectList [] [Asc PokemonId]
   (form, encType) <- generateFormPost postPokemonForm
   admin <- isAdmin
+  logged <- isLogged
 
   defaultLayout
     [whamlet|
@@ -41,19 +42,23 @@ getPokemonR = do
             <button>Adicionar
         <hr>
       <div .grid>
-        $forall Entity id pokemon <- pokemonList
+        $if null pokemonList
+          <p>Nenhum pokémon ainda!
+        $forall Entity pokemonId pokemon <- pokemonList
           <article>
             <header>
               <hgroup>
                 <h2>
-                  <a href=@{PokemonByIdR id}>#{pokemonName pokemon}
-                <p>##{fromSqlKey id}
+                  <a href=@{PokemonByIdR pokemonId}>#{pokemonName pokemon}
+                <p>##{fromSqlKey pokemonId}
               <p>#{pokemonType1 pokemon}#{showType2 $ pokemonType2 pokemon}
             $maybe sprite <- pokemonSpriteUrl pokemon
               <img alt=#{pokemonName pokemon} src=#{sprite}>
             <footer>
+              $if logged == Authorized
+                <a href=@{RecruitPokemonR pokemonId} role="button" .outline>Adicionar à equipe
               $if admin == Authorized
-                <form method=post action=@{PokemonByIdR id}?_method=DELETE>
+                <form method=post action=@{PokemonByIdR pokemonId}?_method=DELETE>
                   <button .delete>Apagar do Pokédex
   |]
 
@@ -77,6 +82,7 @@ getPokemonByIdR :: PokemonId -> Handler Html
 getPokemonByIdR pokemonId = do
   pokemon <- runDB $ get404 pokemonId
   admin <- isAdmin
+  logged <- isLogged
 
   defaultLayout
     [whamlet|
@@ -89,6 +95,8 @@ getPokemonByIdR pokemonId = do
         $maybe sprite <- pokemonSpriteUrl pokemon
           <img alt=#{pokemonName pokemon} src=#{sprite}>
         <footer>
+          $if logged == Authorized
+            <a href=@{RecruitPokemonR pokemonId} role="button" .outline>Adicionar à equipe
           $if admin == Authorized
             <form method=post action=@{PokemonByIdR pokemonId}?_method=DELETE>
               <button .delete>Apagar do Pokédex
@@ -99,3 +107,55 @@ deletePokemonByIdR pokemonId = do
   _ <- runDB $ delete pokemonId
   setMessage "Pokémon apagado do Pokédex"
   redirect PokemonR
+
+recruitPokemonForm :: PokemonId -> TrainerId -> Form TrainerPokemon
+recruitPokemonForm pokemonId trainerId =
+  renderDivs $
+    TrainerPokemon
+    <$> pure pokemonId
+    <*> pure trainerId
+    <*> aopt textField "Apelido (opcional)" Nothing
+
+getRecruitPokemonR :: PokemonId -> Handler Html
+getRecruitPokemonR pokemonId = do
+  maybeTrainerId <- getTrainerSessionId
+
+  case maybeTrainerId of
+    Nothing -> redirect LoginR
+    Just trainerId -> do
+      pokemon <- runDB $ get404 pokemonId
+      (widget, encType) <- generateFormPost $ recruitPokemonForm pokemonId trainerId
+      defaultLayout $ do
+        [whamlet|
+          <article .slim>
+            <header>
+              <hgroup>
+                <h1>Recrutando #{pokemonName pokemon}
+                <p>Quer dar um apelido?
+            <form method=post action=@{RecruitPokemonR pokemonId} encType=#{encType}>
+              ^{widget}
+              <button>Adicionar
+        |]
+
+postRecruitPokemonR :: PokemonId -> Handler Html
+postRecruitPokemonR pokemonId = do
+  maybeTrainerId <- getTrainerSessionId
+
+  case maybeTrainerId of
+    Nothing -> do
+      setMessage "Faça login para adicionar um pokemon"
+      redirect LoginR
+    Just trainerId -> do
+      ((result, _), _) <- runFormPost $ recruitPokemonForm pokemonId trainerId
+
+      case result of
+        FormSuccess trainerPokemon -> do
+          _ <- runDB $ insert trainerPokemon
+          setMessage "Pokémon adicionado à equipe"
+          redirect $ TrainerByIdR trainerId
+        FormMissing -> do
+          setMessage "Erro no envio do formulário"
+          redirect $ RecruitPokemonR pokemonId
+        FormFailure _ -> do
+          setMessage "Conteúdo do formulário inválido"
+          redirect $ RecruitPokemonR pokemonId

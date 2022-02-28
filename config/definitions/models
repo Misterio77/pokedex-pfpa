@@ -14,4 +14,3 @@ TrainerPokemon
     pokemon PokemonId
     trainer TrainerId
     nickname (Maybe Text)
-    level Int

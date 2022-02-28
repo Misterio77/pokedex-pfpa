@@ -37,7 +37,7 @@ getRegisterR = do
             <header>
               <hgroup>
                 <h1>Registrar
-                <h2>Já tem uma conta? #
+                <p>Já tem uma conta? #
                   <a href=@{LoginR}>Fazer login
             <form method=post action=@{RegisterR} enctype=#{encType}>
               ^{widget}

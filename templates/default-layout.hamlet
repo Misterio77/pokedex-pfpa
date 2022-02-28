@@ -13,9 +13,9 @@ $doctype 5
         <li>
           <a href="/">Pokédex
       <ul>
-        $maybe trainer <- mtrainer
+        $maybe trainerId <- maybeTrainerId
           <li>
-            <a href="/trainer/#{trainer}">Perfil
+            <a href=@{TrainerByIdR trainerId}>Perfil
           <li>
             <a href=@{LogoutR}>Logout
         $nothing

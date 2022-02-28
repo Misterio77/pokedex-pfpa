@@ -31,12 +31,19 @@ instance Yesod App where
 
   authRoute _ = Just LoginR
 
+  -- Rotas de escrita em pokémons só podem ser chamadas por admins
   isAuthorized PokemonR True = isAdmin
+  isAuthorized (PokemonByIdR _) True = isAdmin
+  -- Rota de adicionar ao time só pode ser chamada se estiver logado
+  isAuthorized (RecruitPokemonR _) _ = isLogged
+  -- Rota de remover da equipe só pode ser chamada pelo próprio usuário
+  isAuthorized (TrainerPokemonByIdR trainerId _) True = isSelf trainerId
+  -- Outras rotas podem ser chamadas por todos
   isAuthorized _ _ = return Authorized
 
   defaultLayout :: Widget -> Handler Html
   defaultLayout widget = do
-    mtrainer <- getTrainerSession
+    maybeTrainerId <- getTrainerSessionId
     mmsg <- getMessage
     pc <- widgetToPageContent widget
 
@@ -67,6 +74,15 @@ isAdmin = do
     Nothing -> AuthenticationRequired
     Just "1" -> Authorized
     Just _ -> Unauthorized "Você não é o Admin"
+
+isSelf :: TrainerId -> Handler AuthResult
+isSelf trainerId = do
+  maybeSessionId <- getTrainerSessionId
+
+  return $ case maybeSessionId of
+    Nothing -> AuthenticationRequired
+    Just t | t == trainerId -> Authorized
+    Just _ -> Unauthorized "Você não é esse usuário"
 
 instance YesodPersist App where
   type YesodPersistBackend App = SqlBackend

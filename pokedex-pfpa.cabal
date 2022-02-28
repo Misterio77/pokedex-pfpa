@@ -21,6 +21,7 @@ executable pokedex-pfpa
       Handler.Pokemon
       Handler.Register
       Handler.Style
+      Handler.Trainers
       Paths_pokedex_pfpa
   hs-source-dirs:
       src
@@ -29,6 +30,7 @@ executable pokedex-pfpa
       aeson
     , base
     , bytestring
+    , esqueleto
     , file-embed
     , http-types
     , monad-logger
