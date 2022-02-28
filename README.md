@@ -1,7 +1,7 @@
 # Projeto Yesod - Programação Funcional Pura com Aplicações - EaD - Curso de verão IME
 
 ## Integrantes do grupo
-- 10856803 Gabriel Fontes
+- 10856803 Gabriel Silva Fontes
 - 11816122 João Vitor Diógenes
 - 6476509 Euclides Torres Ometto Stolf
 
@@ -50,9 +50,14 @@ de ambiente (veja elas em `config/settings.yml`), ou especificando um outro
 
 ## Descrição detalhada
 
-Nosso projeto possui o intuito de ser um organizador de equipes para mestres de Pokémons. Cada treinador deve se registrar para ter acesso à funcionalidade de montar a sua própria equipe, e para tal, existem pokémons pré-cadastrados disponíveis, com as devidas informações de nome, tipo e respectiva imagem.
+Nosso projeto possui o intuito de ser um organizador de equipes para mestres de
+Pokémons. Cada treinador deve se registrar para ter acesso à funcionalidade de
+montar a sua própria equipe, e para tal, existem pokémons pré-cadastrados
+disponíveis, com as devidas informações de nome, tipo e respectiva imagem.
 
-O objetivo final é ser um sistema simples, mas de usabilidade agradável e que poderia ser útil em mostrar quais pokémons fazem parte do seu time, como um mestre pokémon.
+O objetivo final é ser um sistema simples, mas de usabilidade agradável e que
+poderia ser útil em mostrar quais pokémons fazem parte do seu time, como um
+mestre pokémon.
 
 ### Banco de dados
 Nosso banco de dados está estruturado de acordo com este diagrama Crows Foots:
@@ -60,6 +65,16 @@ Nosso banco de dados está estruturado de acordo com este diagrama Crows Foots:
 ![diagrama](https://lh5.googleusercontent.com/4rOFJAhgNe0gVwuRhkXH08o-apQyspBvPBR_AHZf8xGi9OeLeqWIxqTyPfK9h6Ym8nti25-7JnUD62lpYpwYyBa66lY5h5eizFJ7R3SrfajPj0ZmuHRX_pnWNY3NzhjXZdE9LRDa)
 
 ### Estilização
-Utilizamos a ferramenta SCSS para estilização. Aplicamos uma estilização padrão (para cada elemento, independente da página), de forma que tenhamos padronização em todo o sistema, e também praticidade e agilidade no desenvolvimento.
+Utilizamos a sheet [PicoCSS](https://picocss.com/) como base. Esta é
+implementada em SCSS, e tem como característica principal usar poucas classes
+pra estilização, sendo uma boa escolha para prototipar rápido e para um HTML
+semântico.
 
-_PS: Sim, o tema é adaptável de acordo com o seu navegador e sistema operacional. Sim, o preto e amarelo no tema escuro é #CAASO. **Voa ICMC.**_
+Incluimos apenas o estilo já compilado em CSS, mas deve ser possível compilar
+automaticamente com o Haskell. Embedamos o CSS no executável em tempo de
+compiação, facilitando a portabilidade do programa.
+
+Por fim, nossa estilização têm temas escuro e claro (escolhidos dependendo da
+configuração do seu navegador ou sistema operacional).
+
+_PS: E o Amarelo é #CAASO. **Voa ICMC.**_
